@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayman Zia | Flutter Developer</title>
+    <title>Ayman Zia | Mobile Application Developer</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -43,7 +43,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #60a5fa; /* Light blue logo text */
+            color: #60a5fa;
             text-decoration: none;
             letter-spacing: 1px;
         }
@@ -90,7 +90,6 @@
             margin-bottom: 20px;
         }
 
-        /* The glowing gradient text effect */
         .gradient-text {
             background: var(--gradient-primary);
             background-clip: text;
@@ -136,7 +135,7 @@
         }
 
         .btn-secondary {
-            background: #3b82f6; /* Solid Blue */
+            background: #3b82f6;
         }
 
         /* --- Social Icons --- */
@@ -165,7 +164,7 @@
             transform: translateY(-3px);
         }
 
-        /* --- Hero Image & Blob Shape --- */
+        /* --- Hero Image (Blob) --- */
         .hero-image-container {
             flex: 1;
             display: flex;
@@ -176,8 +175,8 @@
         .blob-image {
             width: 400px;
             height: 400px;
-            background-color: #2a2d3e; /* Fallback color before image loads */
-            background-image: url('assets/profile.jpg'); /* Ensure your image is named profile.jpg in the assets folder */
+            background-color: #2a2d3e;
+            background-image: url('profile.jpg'); /* Fixed to root path */
             background-size: cover;
             background-position: center;
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
@@ -203,7 +202,7 @@
         }
 
         .section-title span {
-            color: #d946ef; /* Neon Pink accent */
+            color: #d946ef;
         }
 
         .projects-grid {
@@ -218,6 +217,9 @@
             padding: 20px;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .project-card:hover {
@@ -226,26 +228,30 @@
             border-color: rgba(217, 70, 239, 0.4);
         }
 
-        .project-img-placeholder {
+        .project-img-container {
             width: 100%;
             height: 180px;
             background: #121521;
             border-radius: 10px;
             margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-            overflow: hidden; /* Ensures image stays within rounded borders */
         }
 
-        /* Added to support real images in project cards if you want to use them later */
-        .project-img-placeholder img {
+        .project-img-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .img-error-fallback {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 10px;
         }
 
         .project-info h3 {
@@ -282,17 +288,18 @@
             color: #8b5cf6;
             font-weight: 600;
             font-size: 0.9rem;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
             transition: 0.3s;
+            margin-top: auto;
         }
 
         .project-link:hover {
             color: #d946ef;
         }
 
-        /* Responsive Design for Mobile */
+        /* Responsive Design */
         @media (max-width: 768px) {
             .hero {
                 flex-direction: column;
@@ -326,10 +333,9 @@
     </nav>
 
     <section class="hero">
-        
         <div class="hero-content">
             <h1>Hi, I'm <br> <span class="gradient-text">Ayman Zia</span></h1>
-            <p>I craft exceptional digital experiences with clean, efficient code and beautiful designs that make an impact. Specializing in Futter Development.</p>
+            <p>I craft exceptional digital experiences with clean, efficient code and beautiful designs that make an impact. Specializing in Mobile Application Development.</p>
             
             <div class="button-group">
                 <a href="mailto:aymanzia2005@gmail.com" class="btn btn-primary">
@@ -349,7 +355,6 @@
         <div class="hero-image-container">
             <div class="blob-image"></div>
         </div>
-
     </section>
 
     <section class="projects-section" id="projects">
@@ -358,55 +363,61 @@
         <div class="projects-grid">
             
             <div class="project-card">
-                <div class="project-img-placeholder">
-                    [ Fitness Planner App Image ]
-                </div>
-                <div class="project-info">
-                    <h3>AI-Driven Fitness Planner</h3>
-                    <p>A mobile application featuring personalized workout plans generated via secure integrations with the Groq AI API. Includes robust state handling.</p>
-                    <div class="tech-tags">
-                        <span>Flutter</span>
-                        <span>Dart</span>
-                        <span>Groq API</span>
+                <div>
+                    <div class="project-img-container">
+                        <img src="fitness_planner.png" alt="Fitness Planner App" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>fitness_planner.png missing</div>'">
                     </div>
-                    <a href="https://github.com/ayman1008" target="_blank" class="project-link">
-                        View Code <i class="fa-brands fa-github"></i>
-                    </a>
+                    <div class="project-info">
+                        <h3>AI-Driven Fitness Planner</h3>
+                        <p>A mobile application featuring personalized workout plans generated via secure integrations with the Groq AI API. Includes robust state handling.</p>
+                        <div class="tech-tags">
+                            <span>Flutter</span>
+                            <span>Dart</span>
+                            <span>Groq API</span>
+                        </div>
+                    </div>
                 </div>
+                <a href="https://github.com/ayman1008" target="_blank" class="project-link">
+                    View Code <i class="fa-brands fa-github"></i>
+                </a>
             </div>
 
             <div class="project-card">
-                <div class="project-img-placeholder">
-                    [ Expense Tracker Image ]
-                </div>
-                <div class="project-info">
-                    <h3>Cloud-Integrated Expense Tracker</h3>
-                    <p>A cross-platform financial logging application featuring complete user session tracking and persistent real-time storage.</p>
-                    <div class="tech-tags">
-                        <span>Firebase Auth</span>
-                        <span>Firestore</span>
+                <div>
+                    <div class="project-img-container">
+                        <img src="expense_tracker.png" alt="Expense Tracker" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>expense_tracker.png missing</div>'">
                     </div>
-                    <a href="https://github.com/ayman1008" target="_blank" class="project-link">
-                        View Code <i class="fa-brands fa-github"></i>
-                    </a>
+                    <div class="project-info">
+                        <h3>Cloud-Integrated Expense Tracker</h3>
+                        <p>A cross-platform financial logging application featuring complete user session tracking and persistent real-time storage.</p>
+                        <div class="tech-tags">
+                            <span>Firebase Auth</span>
+                            <span>Firestore</span>
+                        </div>
+                    </div>
                 </div>
+                <a href="https://github.com/ayman1008" target="_blank" class="project-link">
+                    View Code <i class="fa-brands fa-github"></i>
+                </a>
             </div>
 
             <div class="project-card">
-                <div class="project-img-placeholder">
-                    [ Payroll System Image ]
-                </div>
-                <div class="project-info">
-                    <h3>Employee Payroll System</h3>
-                    <p>A foundational software project emphasizing core Object-Oriented Programming (OOP) architectures and data management pipelines.</p>
-                    <div class="tech-tags">
-                        <span>C++</span>
-                        <span>OOP</span>
+                <div>
+                    <div class="project-img-container">
+                        <img src="payroll_system.png" alt="Payroll System" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>payroll_system.png missing</div>'">
                     </div>
-                    <a href="https://github.com/ayman1008" target="_blank" class="project-link">
-                        View Code <i class="fa-brands fa-github"></i>
-                    </a>
+                    <div class="project-info">
+                        <h3>Employee Payroll System</h3>
+                        <p>A foundational software project emphasizing core Object-Oriented Programming (OOP) architectures and data management pipelines.</p>
+                        <div class="tech-tags">
+                            <span>C++</span>
+                            <span>OOP</span>
+                        </div>
+                    </div>
                 </div>
+                <a href="https://github.com/ayman1008" target="_blank" class="project-link">
+                    View Code <i class="fa-brands fa-github"></i>
+                </a>
             </div>
 
         </div>
