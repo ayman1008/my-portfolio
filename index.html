@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayman Zia | Flutter Developer</title>
+    <title>Ayman Zia | Mobile Application Developer</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -93,8 +93,8 @@
         /* The glowing gradient text effect */
         .gradient-text {
             background: var(--gradient-primary);
-            -webkit-background-clip: text;
             background-clip: text;
+            -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -177,20 +177,119 @@
             width: 400px;
             height: 400px;
             background-color: #2a2d3e; /* Fallback color before image loads */
-            background-image: url('assets/profile.jpg'); /* Replace with your image */
+            background-image: url('assets/profile.jpg'); /* Ensure your image is named profile.jpg in the assets folder */
             background-size: cover;
             background-position: center;
-            /* This creates the organic blob shape */
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             animation: morph 8s ease-in-out infinite;
             box-shadow: 0 0 40px rgba(217, 70, 239, 0.2);
         }
 
-        /* Animates the blob to move slightly */
         @keyframes morph {
             0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
             50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
             100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        /* --- Projects Section --- */
+        .projects-section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .section-title span {
+            color: #d946ef; /* Neon Pink accent */
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: #1e2235;
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+            border-color: rgba(217, 70, 239, 0.4);
+        }
+
+        .project-img-placeholder {
+            width: 100%;
+            height: 180px;
+            background: #121521;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            overflow: hidden; /* Ensures image stays within rounded borders */
+        }
+
+        /* Added to support real images in project cards if you want to use them later */
+        .project-img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .tech-tags span {
+            background: rgba(217, 70, 239, 0.1);
+            color: #d946ef;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-link {
+            text-decoration: none;
+            color: #8b5cf6;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .project-link:hover {
+            color: #d946ef;
         }
 
         /* Responsive Design for Mobile */
@@ -204,7 +303,7 @@
                 justify-content: center;
             }
             .nav-links {
-                display: none; /* Can add a hamburger menu later */
+                display: none; 
             }
             .blob-image {
                 width: 300px;
@@ -222,9 +321,7 @@
         <a href="#" class="logo">Portfolio</a>
         <ul class="nav-links">
             <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#projects">Projects</a></li>
         </ul>
     </nav>
 
@@ -246,7 +343,6 @@
             <div class="social-icons">
                 <a href="https://github.com/ayman1008" target="_blank"><i class="fa-brands fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/ayman-zia/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
             </div>
         </div>
 
@@ -254,6 +350,66 @@
             <div class="blob-image"></div>
         </div>
 
+    </section>
+
+    <section class="projects-section" id="projects">
+        <h2 class="section-title">My <span>Projects</span></h2>
+        
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <div class="project-img-placeholder">
+                    [ Fitness Planner App Image ]
+                </div>
+                <div class="project-info">
+                    <h3>AI-Driven Fitness Planner</h3>
+                    <p>A mobile application featuring personalized workout plans generated via secure integrations with the Groq AI API. Includes robust state handling.</p>
+                    <div class="tech-tags">
+                        <span>Flutter</span>
+                        <span>Dart</span>
+                        <span>Groq API</span>
+                    </div>
+                    <a href="https://github.com/ayman1008" target="_blank" class="project-link">
+                        View Code <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img-placeholder">
+                    [ Expense Tracker Image ]
+                </div>
+                <div class="project-info">
+                    <h3>Cloud-Integrated Expense Tracker</h3>
+                    <p>A cross-platform financial logging application featuring complete user session tracking and persistent real-time storage.</p>
+                    <div class="tech-tags">
+                        <span>Firebase Auth</span>
+                        <span>Firestore</span>
+                    </div>
+                    <a href="https://github.com/ayman1008" target="_blank" class="project-link">
+                        View Code <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img-placeholder">
+                    [ Payroll System Image ]
+                </div>
+                <div class="project-info">
+                    <h3>Employee Payroll System</h3>
+                    <p>A foundational software project emphasizing core Object-Oriented Programming (OOP) architectures and data management pipelines.</p>
+                    <div class="tech-tags">
+                        <span>C++</span>
+                        <span>OOP</span>
+                    </div>
+                    <a href="https://github.com/ayman1008" target="_blank" class="project-link">
+                        View Code <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
     </section>
 
 </body>
