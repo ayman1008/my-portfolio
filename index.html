@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayman Zia | Mobile Application Developer</title>
+    <title>Ayman Zia | Flutter Developer</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,10 +12,13 @@
         /* --- Color Palette & Base Setup --- */
         :root {
             --bg-dark: #121521;
+            --card-bg: #1e2235;
+            --input-bg: #171a2b;
             --text-light: #e2e8f0;
             --text-muted: #94a3b8;
             --gradient-primary: linear-gradient(90deg, #d946ef, #8b5cf6); /* Pink to Purple */
             --gradient-button: linear-gradient(90deg, #6366f1, #a855f7); /* Blue to Purple */
+            --accent-blue: #3b82f6;
         }
 
         * {
@@ -23,6 +26,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -92,7 +96,6 @@
 
         .gradient-text {
             background: var(--gradient-primary);
-            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -135,7 +138,7 @@
         }
 
         .btn-secondary {
-            background: #3b82f6;
+            background: var(--accent-blue);
         }
 
         /* --- Social Icons --- */
@@ -176,7 +179,7 @@
             width: 400px;
             height: 400px;
             background-color: #2a2d3e;
-            background-image: url('profile.jpg'); /* Fixed to root path */
+            background-image: url('assets/profile.jpg');
             background-size: cover;
             background-position: center;
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
@@ -212,7 +215,7 @@
         }
 
         .project-card {
-            background: #1e2235;
+            background: var(--card-bg);
             border-radius: 15px;
             padding: 20px;
             transition: transform 0.3s, box-shadow 0.3s;
@@ -299,7 +302,313 @@
             color: #d946ef;
         }
 
-        /* Responsive Design */
+        /* --- Dynamic Hire Me Modal Overlay --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 12, 19, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            background: var(--bg-dark);
+            width: 100%;
+            max-width: 1050px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            transform: translateY(-40px);
+            transition: transform 0.4s ease;
+            padding: 40px;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #d946ef;
+        }
+
+        .modal-title-wrapper {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .modal-title-wrapper h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .modal-title-wrapper p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .modal-layout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 40px;
+        }
+
+        /* Modal Info Side (Left) */
+        .modal-info-side {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-info-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .card-icon-box {
+            width: 55px;
+            height: 55px;
+            background: rgba(59, 130, 246, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+            font-size: 1.3rem;
+        }
+
+        .contact-info-card:nth-child(2) .card-icon-box {
+            background: rgba(139, 92, 246, 0.15);
+            color: #8b5cf6;
+        }
+
+        .contact-info-card:nth-child(3) .card-icon-box {
+            background: rgba(217, 70, 239, 0.15);
+            color: #d946ef;
+        }
+
+        .card-details h4 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .card-details p, .card-details a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        /* Modal Form Side (Right) */
+        .modal-form-side {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .modal-form-side h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .modal-form-side > p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .form-group-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-field-block {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-field-block label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .form-field-block input, .form-field-block textarea {
+            background: var(--input-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 14px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-field-block input:focus, .form-field-block textarea:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.15);
+        }
+
+        .form-caption {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: -5px;
+        }
+
+        .form-submit-btn {
+            background: var(--gradient-button);
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .form-submit-btn:hover {
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* --- Footer Section --- */
+        footer {
+            background-color: #0b0d14;
+            padding: 60px 8% 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about h3, .footer-links h3, .footer-contact h3 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-about p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-about .social-icons a {
+            width: 38px;
+            height: 38px;
+            font-size: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            color: #d946ef;
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-contact p i {
+            color: #8b5cf6;
+            font-size: 1rem;
+        }
+
+        .footer-contact p a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-contact p a:hover {
+            color: #d946ef;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .modal-layout-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .modal-container {
+                padding: 25px;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero {
                 flex-direction: column;
@@ -319,6 +628,16 @@
             .hero-content h1 {
                 font-size: 2.5rem;
             }
+            footer {
+                padding: 40px 5% 20px;
+                text-align: center;
+            }
+            .footer-contact p {
+                justify-content: center;
+            }
+            .modal-title-wrapper h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -335,12 +654,12 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Hi, I'm <br> <span class="gradient-text">Ayman Zia</span></h1>
-            <p>I craft exceptional digital experiences with clean, efficient code and beautiful designs that make an impact. Specializing in Mobile Application Development.</p>
+            <p>I craft exceptional digital experiences with clean, efficient code and beautiful designs that make an impact. Specializing in Flutter Developer solutions.</p>
             
             <div class="button-group">
-                <a href="mailto:aymanzia2005@gmail.com" class="btn btn-primary">
+                <button class="btn btn-primary" id="openHireModal">
                     Hire Me <i class="fa-solid fa-paper-plane"></i>
-                </a>
+                </button>
                 <a href="#" class="btn btn-secondary">
                     Download CV <i class="fa-solid fa-download"></i>
                 </a>
@@ -365,7 +684,7 @@
             <div class="project-card">
                 <div>
                     <div class="project-img-container">
-                        <img src="fitness_planner.png" alt="Fitness Planner App" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>fitness_planner.png missing</div>'">
+                        <img src="assets/fitness_planner.png" alt="Fitness Planner App" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>fitness_planner.png missing</div>'">
                     </div>
                     <div class="project-info">
                         <h3>AI-Driven Fitness Planner</h3>
@@ -385,7 +704,7 @@
             <div class="project-card">
                 <div>
                     <div class="project-img-container">
-                        <img src="expense_tracker.png" alt="Expense Tracker" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>expense_tracker.png missing</div>'">
+                        <img src="assets/expense_tracker.png" alt="Expense Tracker" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>expense_tracker.png missing</div>'">
                     </div>
                     <div class="project-info">
                         <h3>Cloud-Integrated Expense Tracker</h3>
@@ -404,7 +723,7 @@
             <div class="project-card">
                 <div>
                     <div class="project-img-container">
-                        <img src="payroll_system.png" alt="Payroll System" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>payroll_system.png missing</div>'">
+                        <img src="assets/payroll_system.png" alt="Payroll System" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>payroll_system.png missing</div>'">
                     </div>
                     <div class="project-info">
                         <h3>Employee Payroll System</h3>
@@ -422,6 +741,130 @@
 
         </div>
     </section>
+
+    <div class="modal-overlay" id="hireModalOverlay">
+        <div class="modal-container">
+            <i class="fa-solid fa-xmark close-modal" id="closeHireModal"></i>
+            
+            <div class="modal-title-wrapper">
+                <h2>Get In Touch</h2>
+                <p>Feel free to reach out for collaborations or just a friendly hello</p>
+            </div>
+
+            <div class="modal-layout-grid">
+                <div class="modal-info-side">
+                    <div class="contact-info-card">
+                        <div class="card-icon-box"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="card-details">
+                            <h4>Email Me</h4>
+                            <p><a href="mailto:aymanzia2005@gmail.com">aymanzia2005@gmail.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="card-icon-box"><i class="fa-solid fa-phone"></i></div>
+                        <div class="card-details">
+                            <h4>Call Me</h4>
+                            <p>+92-3375109840</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="card-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="card-details">
+                            <h4>Location</h4>
+                            <p>Pakistan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-form-side">
+                    <h3>Get In Touch</h3>
+                    <p>Have a question or want to work together? Send me a message!</p>
+                    
+                    <form class="form-group-wrapper" onsubmit="event.preventDefault();">
+                        <div class="form-field-block">
+                            <label for="usrName">Your Name</label>
+                            <input type="text" id="usrName" placeholder="e.g. Ayman Zia">
+                        </div>
+
+                        <div class="form-field-block">
+                            <label for="usrEmail">Email Address</label>
+                            <input type="email" id="usrEmail" placeholder="e.g. aymanzia2005@gmail.com">
+                            <span class="form-caption">I'll never share your email with anyone else</span>
+                        </div>
+
+                        <div class="form-field-block">
+                            <label for="usrSubject">Subject</label>
+                            <input type="text" id="usrSubject" placeholder="Project Inquiry">
+                        </div>
+
+                        <button type="submit" class="form-submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            
+            <div class="footer-about">
+                <h3>Ayman Zia</h3>
+                <p>An enthusiastic Flutter Developer focused on crafting high-performance cross-platform solutions and smooth interactive user experiences.</p>
+                <div class="social-icons">
+                    <a href="https://github.com/ayman1008" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/ayman-zia/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <p><i class="fa-solid fa-envelope"></i> <a href="mailto:aymanzia2005@gmail.com">aymanzia2005@gmail.com</a></p>
+                <p><i class="fa-solid fa-phone"></i> +92-3375109840</p>
+                <p><i class="fa-solid fa-location-dot"></i> Pakistan</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Ayman Zia. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const openModalBtn = document.getElementById('openHireModal');
+        const closeModalBtn = document.getElementById('closeHireModal');
+        const modalOverlay = document.getElementById('hireModalOverlay');
+
+        // Open Modal Event
+        openModalBtn.addEventListener('click', () => {
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevents background scrolling
+        });
+
+        // Close Modal Event
+        closeModalBtn.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restores background scrolling
+        });
+
+        // Close Modal if user clicks on the outer overlay background
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
 
 </body>
 </html>
