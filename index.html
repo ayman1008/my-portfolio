@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayman Zia | Software Engineer Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-pink: #f48fb1;
+            --accent-purple: #b39ddb;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 0;
+        }
+
+        /* Hero Section */
+        header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--accent-pink), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p.subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .contact-info a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed var(--accent-pink);
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-pink);
+        }
+
+        /* Section Layouts */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 40px 0 20px 0;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        .skills-education-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .skills-education-grid { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        /* Tech Badges */
+        .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .badge {
+            background-color: rgba(244, 143, 177, 0.15);
+            color: #ffffff;
+            border: 1px solid rgba(244, 143, 177, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Projects Layout */
+        .projects-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .project-card {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 25px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .project-card { grid-template-columns: 1fr; }
+        }
+
+        .project-media {
+            background-color: #0b0f19;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 220px;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .project-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-details {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .project-meta {
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .project-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--accent-pink);
+            padding-bottom: 2px;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-pink);
+        }
+
+        /* Timeline Items */
+        .timeline-item {
+            margin-bottom: 20px;
+        }
+
+        .timeline-item:last-child { margin-bottom: 0; }
+        
+        .timeline-title { font-weight: 600; color: var(--text-main); font-size: 1.05rem; }
+        .timeline-sub { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+        .timeline-loc { font-size: 0.85rem; color: #ffffff; font-weight: 600; background-color: rgba(244, 143, 177, 0.2); padding: 2px 8px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1>Ayman Zia</h1>
+            <p class="subtitle">Software Engineer & Mobile Application Developer</p>
+            <div class="contact-info">
+                <span>📧 <a href="mailto:aymanzia2005@gmail.com">aymanzia2005@gmail.com</a></span>
+                <span>🔗 <a href="https://www.linkedin.com/in/ayman-zia/" target="_blank">LinkedIn</a></span>
+                <span>💻 <a href="https://github.com/ayman1008?tab=repositories" target="_blank">GitHub Profile</a></span>
+            </div>
+        </header>
+
+        <div class="skills-education-grid">
+            <section class="card">
+                <h2 style="font-size: 1.2rem; margin-bottom: 15px; color: var(--accent-purple);">Technical Stack</h2>
+                <div class="badge-group">
+                    <span class="badge">Flutter</span>
+                    <span class="badge">Dart</span>
+                    <span class="badge">Firebase Authentication</span>
+                    <span class="badge">Cloud Firestore</span>
+                    <span class="badge">REST APIs</span>
+                    <span class="badge">C++ & OOP</span>
+                    <span class="badge">Machine Learning</span>
+                    <span class="badge">Quality Assurance (QA)</span>
+                    <span class="badge">Git & Modular Workflows</span>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2 style="font-size: 1.2rem; margin-bottom: 15px; color: var(--accent-purple);">Academic Background</h2>
+                <div class="timeline-item">
+                    <div class="timeline-title">Bachelors of Information Technology</div>
+                    <div class="timeline-sub">International Islamic University, Islamabad</div>
+                </div>
+            </section>
+        </div>
+
+        <h2 class="section-title">Project Showcase</h2>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="project-media">
+                    <img src="assets/fitness_planner.png" alt="Fitness & Workout Planner Screenshot" onerror="this.style.display='none'; this.parentNode.innerText='[ App Screenshot / Video Demo ]'">
+                </div>
+                <div class="project-details">
+                    <div class="project-header">
+                        <div class="project-meta">2026 | Banu Qabil, Rawalpindi</div>
+                        <h3>AI-Driven Fitness & Workout Planner</h3>
+                    </div>
+                    <p class="project-description">
+                        A mobile application featuring personalized workout plans generated via secure integrations with the Groq AI API. Includes robust state handling and local key security.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/ayman1008?tab=repositories" target="_blank">View Code Repository →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-media">
+                    <img src="assets/expense_tracker.png" alt="Expense Tracker Screenshot" onerror="this.style.display='none'; this.parentNode.innerText='[ App Screenshot / Video Demo ]'">
+                </div>
+                <div class="project-details">
+                    <div class="project-header">
+                        <div class="project-meta">2026 | Banu Qabil, Rawalpindi</div>
+                        <h3>Cloud-Integrated Expense Tracker</h3>
+                    </div>
+                    <p class="project-description">
+                        A cross-platform financial logging application featuring complete user session tracking via Firebase Authentication and persistent real-time storage using Cloud Firestore.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/ayman1008?tab=repositories" target="_blank">View Code Repository →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-media">
+                    <img src="assets/payroll_system.png" alt="Payroll System Screenshot" onerror="this.style.display='none'; this.parentNode.innerText='[ System Demo Mockup ]'">
+                </div>
+                <div class="project-details">
+                    <div class="project-header">
+                        <div class="project-meta">2025 | International Islamic University, Islamabad</div>
+                        <h3>Employee Payroll System</h3>
+                    </div>
+                    <p class="project-description">
+                        A foundational semester project built in C++ emphasizing core Object-Oriented Programming (OOP) architectures, handling structured employee data management pipelines.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/ayman1008?tab=repositories" target="_blank">View Code Repository →</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 class="section-title">Certifications & Professional Experience</h2>
+        <div class="projects-grid" style="gap: 15px;">
+            
+            <div class="card" style="padding: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <div style="font-weight: 600; font-size: 1.1rem;">Quality Assurance (QA) Testing Intern</div>
+                        <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2px;">etl online</div>
+                    </div>
+                    <span class="timeline-loc">2026</span>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">
+                    Gained professional engineering insight into structural software test planning, debugging cycles, and multi-device platform layout validation.
+                </p>
+            </div>
+
+            <div class="card" style="padding: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <div style="font-weight: 600; font-size: 1.1rem;">Lead Platform Quality Assurance Verification</div>
+                        <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2px;">All Pakistan National Level Prompt Engineering Competition</div>
+                    </div>
+                    <span class="timeline-loc">2026</span>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">
+                    Managed and validated stable deployment platform requirements for high-concurrency national-scale technical evaluations.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
