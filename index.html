@@ -96,6 +96,7 @@
 
         .gradient-text {
             background: var(--gradient-primary);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -179,7 +180,7 @@
             width: 400px;
             height: 400px;
             background-color: #2a2d3e;
-            background-image: url('assets/profile.jpg');
+            background-image: url('profile.jpg');
             background-size: cover;
             background-position: center;
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
@@ -660,7 +661,7 @@
                 <button class="btn btn-primary" id="openHireModal">
                     Hire Me <i class="fa-solid fa-paper-plane"></i>
                 </button>
-                <a href="#" class="btn btn-secondary">
+                <a href="Ayman_Zia_CV.pdf" download="Ayman_Zia_CV.pdf" class="btn btn-secondary">
                     Download CV <i class="fa-solid fa-download"></i>
                 </a>
             </div>
@@ -684,7 +685,7 @@
             <div class="project-card">
                 <div>
                     <div class="project-img-container">
-                        <img src="assets/fitness_planner.png" alt="Fitness Planner App" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>fitness_planner.png missing</div>'">
+                        <img src="fitness_planner.png" alt="Fitness Planner App" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>fitness_planner.png missing</div>'">
                     </div>
                     <div class="project-info">
                         <h3>AI-Driven Fitness Planner</h3>
@@ -704,7 +705,7 @@
             <div class="project-card">
                 <div>
                     <div class="project-img-container">
-                        <img src="assets/expense_tracker.png" alt="Expense Tracker" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>expense_tracker.png missing</div>'">
+                        <img src="expense_tracker.png" alt="Expense Tracker" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>expense_tracker.png missing</div>'">
                     </div>
                     <div class="project-info">
                         <h3>Cloud-Integrated Expense Tracker</h3>
@@ -723,7 +724,7 @@
             <div class="project-card">
                 <div>
                     <div class="project-img-container">
-                        <img src="assets/payroll_system.png" alt="Payroll System" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>payroll_system.png missing</div>'">
+                        <img src="payroll_system.png" alt="Payroll System" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'img-error-fallback\'><i class=\'fa-regular fa-image\'></i><br>payroll_system.png missing</div>'">
                     </div>
                     <div class="project-info">
                         <h3>Employee Payroll System</h3>
@@ -845,19 +846,16 @@
         const closeModalBtn = document.getElementById('closeHireModal');
         const modalOverlay = document.getElementById('hireModalOverlay');
 
-        // Open Modal Event
         openModalBtn.addEventListener('click', () => {
             modalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevents background scrolling
+            document.body.style.overflow = 'hidden';
         });
 
-        // Close Modal Event
         closeModalBtn.addEventListener('click', () => {
             modalOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restores background scrolling
+            document.body.style.overflow = 'auto';
         });
 
-        // Close Modal if user clicks on the outer overlay background
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) {
                 modalOverlay.classList.remove('active');
